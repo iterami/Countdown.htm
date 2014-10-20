@@ -15,9 +15,8 @@ function countdown(){
       + 1;
 
     if(document.getElementById('countdown').innerHTML < 1){
-        clearInterval(interval);
         running = false;
-        document.getElementById('lose-message-hidden').style.display = 'block';
+        clearInterval(interval);
     }
 }
 
