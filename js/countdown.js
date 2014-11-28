@@ -1,8 +1,8 @@
-function add100(){
+function add(time){
     if(running){
         document.getElementById('countdown').innerHTML =
           parseInt(document.getElementById('countdown').innerHTML)
-          + 100;
+          + time;
     }
 }
 
