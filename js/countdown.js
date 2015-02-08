@@ -16,11 +16,11 @@ function countdown(){
 
     if(document.getElementById('countdown').innerHTML < 1){
         running = false;
-        clearInterval(interval);
+        window.clearInterval(interval);
     }
 }
 
-var interval = setInterval(
+var interval = window.setInterval(
   'countdown()',
   1000
 );
