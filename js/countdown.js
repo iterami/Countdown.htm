@@ -1,9 +1,11 @@
 function add(time){
-    if(running){
-        document.getElementById('countdown').innerHTML =
-          parseInt(document.getElementById('countdown').innerHTML)
-          + time;
+    if(!running){
+        return;
     }
+
+    document.getElementById('countdown').innerHTML =
+      parseInt(document.getElementById('countdown').innerHTML)
+      + time;
 }
 
 function countdown(){
