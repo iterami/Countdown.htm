@@ -22,8 +22,11 @@ function countdown(){
     }
 }
 
-var interval = window.setInterval(
-  'countdown()',
-  1000
-);
 var running = true;
+
+window.onload = function(e){
+    var interval = window.setInterval(
+      'countdown()',
+      1000
+    );
+};
