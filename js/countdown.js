@@ -45,6 +45,11 @@ function reset(){
 
     window.localStorage.removeItem('Countdown.htm-countdown');
     window.localStorage.removeItem('Countdown.htm-score');
+
+    interval = window.setInterval(
+      'countdown()',
+      1000
+    );
 }
 
 var interval = 0;
