@@ -1,3 +1,5 @@
+'use strict';
+
 function add(time){
     if(!running
       || parseInt(document.getElementById('countdown').innerHTML) <= 0){
