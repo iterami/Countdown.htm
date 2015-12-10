@@ -1,39 +1,37 @@
 'use strict';
 
 function add(time){
+    var countdown = parseInt(document.getElementById('countdown').innerHTML);
+
     if(!running
-      || parseInt(document.getElementById('countdown').innerHTML) <= 0){
+      || countdown <= 0){
         return;
     }
 
-    document.getElementById('countdown').innerHTML =
-      parseInt(document.getElementById('countdown').innerHTML)
-      + time;
+    document.getElementById('countdown').innerHTML = countdown + time;
 }
 
 function countdown(){
-    var countdownvalue = parseInt(document.getElementById('countdown').innerHTML);
+    var countdown = parseInt(document.getElementById('countdown').innerHTML) - 1;
 
-    if(countdownvalue < 1){
+    if(countdown < 0){
         running = false;
         window.clearInterval(interval);
         return;
     }
 
-    document.getElementById('countdown').innerHTML =
-      countdownvalue
-      - 1;
-    document.getElementById('score').innerHTML =
-      parseInt(document.getElementById('score').innerHTML)
-      + 1;
+    var score = parseInt(document.getElementById('score').innerHTML) + 1;
+
+    document.getElementById('countdown').innerHTML = countdown;
+    document.getElementById('score').innerHTML = score;
 
     window.localStorage.setItem(
       'Countdown.htm-countdown',
-      document.getElementById('countdown').innerHTML
+      countdown
     );
     window.localStorage.setItem(
       'Countdown.htm-score',
-      document.getElementById('score').innerHTML
+      score
     );
 }
 
