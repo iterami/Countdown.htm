@@ -40,11 +40,14 @@ function reset(){
         return;
     }
 
-    document.getElementById('countdown').innerHTML = 10;
-    document.getElementById('score').innerHTML = 0;
-
-    window.localStorage.removeItem('Countdown.htm-countdown');
-    window.localStorage.removeItem('Countdown.htm-score');
+    var ids = {
+      'countdown': 10,
+      'score': 0,
+    };
+    for(var id in ids){
+      document.getElementById(id).innerHTML = ids[id];
+      window.localStorage.removeItem('Countdown.htm-' + id);
+    }
 
     window.clearInterval(interval);
     interval = window.setInterval(
@@ -58,12 +61,15 @@ var interval = 0;
 var running = true;
 
 window.onload = function(e){
-    document.getElementById('countdown').innerHTML =
-      window.localStorage.getItem('Countdown.htm-countdown')
-      || 10;
-    document.getElementById('score').innerHTML =
-      window.localStorage.getItem('Countdown.htm-score')
-      || 0;
+    var ids = {
+      'countdown': 10,
+      'score': 0,
+    };
+    for(var id in ids){
+        document.getElementById(id).innerHTML =
+          window.localStorage.getItem('Countdown.htm-' + id)
+          || ids[id];
+    }
 
     interval = window.setInterval(
       'countdown()',
