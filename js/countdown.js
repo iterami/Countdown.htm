@@ -51,7 +51,7 @@ function reset(){
 
     window.clearInterval(interval);
     interval = window.setInterval(
-      'countdown()',
+      countdown,
       1000
     );
     running = true;
@@ -72,7 +72,7 @@ window.onload = function(e){
     }
 
     interval = window.setInterval(
-      'countdown()',
+      countdown,
       1000
     );
 };
