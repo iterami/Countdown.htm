@@ -1,7 +1,10 @@
 'use strict';
 
 function add(time){
-    var countdown = parseInt(document.getElementById('countdown').innerHTML);
+    var countdown = parseInt(
+      document.getElementById('countdown').innerHTML,
+      10
+    );
 
     if(!running
       || countdown <= 0){
@@ -12,7 +15,10 @@ function add(time){
 }
 
 function countdown(){
-    var countdown = parseInt(document.getElementById('countdown').innerHTML) - 1;
+    var countdown = parseInt(
+      document.getElementById('countdown').innerHTML,
+      10
+    ) - 1;
 
     if(countdown < 0){
         running = false;
@@ -20,7 +26,10 @@ function countdown(){
         return;
     }
 
-    var score = parseInt(document.getElementById('score').innerHTML) + 1;
+    var score = parseInt(
+      document.getElementById('score').innerHTML,
+      10
+    ) + 1;
 
     document.getElementById('countdown').innerHTML = countdown;
     document.getElementById('score').innerHTML = score;
