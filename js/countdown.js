@@ -80,6 +80,11 @@ window.onload = function(e){
           || ids[id];
     }
 
+    document.getElementById('add').onclick = function(){
+        add(100);
+    };
+    document.getElementById('reset').onclick = reset;
+
     interval = window.setInterval(
       countdown,
       1000
