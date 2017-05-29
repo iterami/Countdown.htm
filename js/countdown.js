@@ -44,6 +44,28 @@ function countdown(){
     );
 }
 
+function repo_init(){
+    var ids = {
+      'countdown': 10,
+      'score': 0,
+    };
+    for(var id in ids){
+        document.getElementById(id).innerHTML =
+          window.localStorage.getItem('Countdown.htm-' + id)
+          || ids[id];
+    }
+
+    document.getElementById('add').onclick = function(){
+        add(100);
+    };
+    document.getElementById('reset').onclick = reset;
+
+    interval = window.setInterval(
+      countdown,
+      1000
+    );
+}
+
 function reset(){
     if(!window.confirm('Reset?')){
         return;
@@ -68,25 +90,3 @@ function reset(){
 
 var interval = 0;
 var running = true;
-
-window.onload = function(e){
-    var ids = {
-      'countdown': 10,
-      'score': 0,
-    };
-    for(var id in ids){
-        document.getElementById(id).innerHTML =
-          window.localStorage.getItem('Countdown.htm-' + id)
-          || ids[id];
-    }
-
-    document.getElementById('add').onclick = function(){
-        add(100);
-    };
-    document.getElementById('reset').onclick = reset;
-
-    interval = window.setInterval(
-      countdown,
-      1000
-    );
-};
