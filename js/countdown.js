@@ -1,42 +1,32 @@
 'use strict';
 
 function add(time){
-    var countdown = parseInt(
-      document.getElementById('countdown').innerHTML,
-      10
-    );
-
     if(!running
-      || countdown <= 0){
+      || left <= 0){
         return;
     }
 
-    document.getElementById('countdown').innerHTML = countdown + time;
+    left += time;
+    document.getElementById('countdown').innerHTML = left;
 }
 
 function countdown(){
-    var countdown = parseInt(
-      document.getElementById('countdown').innerHTML,
-      10
-    ) - 1;
+    left -= 1;
 
-    if(countdown < 0){
+    if(left < 0){
         running = false;
         window.clearInterval(interval);
         return;
     }
 
-    var score = parseInt(
-      document.getElementById('score').innerHTML,
-      10
-    ) + 1;
+    score += 1;
 
-    document.getElementById('countdown').innerHTML = countdown;
+    document.getElementById('countdown').innerHTML = left;
     document.getElementById('score').innerHTML = score;
 
     window.localStorage.setItem(
       'Countdown.htm-countdown',
-      countdown
+      left
     );
     window.localStorage.setItem(
       'Countdown.htm-score',
@@ -49,25 +39,15 @@ function repo_init(){
       'title': 'Countdown.htm',
     });
 
-    var ids = {
-      'countdown': 10,
-      'score': 0,
-    };
-    for(var id in ids){
-        document.getElementById(id).innerHTML =
-          window.localStorage.getItem('Countdown.htm-' + id)
-          || ids[id];
-    }
+    left = parseInt(window.localStorage.getItem('Countdown.htm-countdown')) || 10;
+    score = parseInt(window.localStorage.getItem('Countdown.htm-score')) || 0;
 
     document.getElementById('add').onclick = function(){
         add(100);
     };
     document.getElementById('reset').onclick = reset;
 
-    interval = window.setInterval(
-      countdown,
-      1000
-    );
+    start();
 }
 
 function reset(){
@@ -75,14 +55,18 @@ function reset(){
         return;
     }
 
-    var ids = {
-      'countdown': 10,
-      'score': 0,
-    };
-    for(var id in ids){
-      document.getElementById(id).innerHTML = ids[id];
-      window.localStorage.removeItem('Countdown.htm-' + id);
-    }
+    left = 10;
+    score = 0;
+
+    window.localStorage.removeItem('Countdown.htm-countdown');
+    window.localStorage.removeItem('Countdown.htm-score');
+
+    start();
+}
+
+function start(){
+    document.getElementById('countdown').innerHTML = left;
+    document.getElementById('score').innerHTML = score;
 
     window.clearInterval(interval);
     interval = window.setInterval(
@@ -93,4 +77,6 @@ function reset(){
 }
 
 var interval = 0;
+var left = 10;
 var running = true;
+var score = 0;
