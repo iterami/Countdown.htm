@@ -2,71 +2,48 @@
 
 function add(time){
     if(!running
-      || left <= 0){
+      || core_storage_data['countdown'] <= 0){
         return;
     }
 
-    left += time;
-    document.getElementById('countdown').innerHTML = left;
+    core_storage_data['countdown'] += time;
+    document.getElementById('countdown').value = core_storage_data['countdown'];
 }
 
 function countdown(){
-    left -= 1;
+    core_storage_data['countdown'] -= 1;
 
-    if(left < 0){
+    if(core_storage_data['countdown'] < 0){
         running = false;
         window.clearInterval(interval);
         return;
     }
 
-    score += 1;
+    core_storage_data['score'] += 1;
 
-    document.getElementById('countdown').innerHTML = left;
-    document.getElementById('score').innerHTML = score;
-
-    window.localStorage.setItem(
-      'Countdown.htm-countdown',
-      left
-    );
-    window.localStorage.setItem(
-      'Countdown.htm-score',
-      score
-    );
+    core_storage_update();
 }
 
 function repo_init(){
     core_repo_init({
+      'storage': {
+        'countdown': 10,
+        'score': 0,
+      },
       'title': 'Countdown.htm',
     });
+    core_events_bind({
+      'beforeunload': {
+        'todo': core_storage_save,
+      },
+    });
 
-    left = parseInt(window.localStorage.getItem('Countdown.htm-countdown')) || 10;
-    score = parseInt(window.localStorage.getItem('Countdown.htm-score')) || 0;
+    core_storage_update();
 
     document.getElementById('add').onclick = function(){
         add(100);
     };
-    document.getElementById('reset').onclick = reset;
-
-    start();
-}
-
-function reset(){
-    if(!window.confirm('Reset?')){
-        return;
-    }
-
-    left = 10;
-    score = 0;
-
-    window.localStorage.removeItem('Countdown.htm-countdown');
-    window.localStorage.removeItem('Countdown.htm-score');
-
-    start();
-}
-
-function start(){
-    document.getElementById('countdown').innerHTML = left;
-    document.getElementById('score').innerHTML = score;
+    document.getElementById('reset').onclick = core_storage_reset;
 
     window.clearInterval(interval);
     interval = window.setInterval(
@@ -77,6 +54,4 @@ function start(){
 }
 
 var interval = 0;
-var left = 10;
 var running = true;
-var score = 0;
