@@ -26,16 +26,14 @@ function countdown(){
 
 function repo_init(){
     core_repo_init({
+      'beforeunload': {
+        'todo': core_storage_save,
+      },
       'storage': {
         'countdown': 10,
         'score': 0,
       },
       'title': 'Countdown.htm',
-    });
-    core_events_bind({
-      'beforeunload': {
-        'todo': core_storage_save,
-      },
     });
 
     core_storage_update();
