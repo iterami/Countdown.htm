@@ -38,7 +38,6 @@ function repo_init(){
     document.getElementById('add').onclick = function(){
         add(100);
     };
-    document.getElementById('reset').onclick = core_storage_reset;
 
     window.clearInterval(interval);
     interval = window.setInterval(
