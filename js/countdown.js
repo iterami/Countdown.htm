@@ -26,9 +26,6 @@ function countdown(){
 
 function repo_init(){
     core_repo_init({
-      'beforeunload': {
-        'todo': core_storage_save,
-      },
       'storage': {
         'countdown': 10,
         'score': 0,
