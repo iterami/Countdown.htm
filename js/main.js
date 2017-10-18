@@ -2,6 +2,13 @@
 
 function repo_init(){
     core_repo_init({
+      'info-events': {
+        'add': {
+          'todo': function(){
+              add(100);
+          },
+        },
+      },
       'storage': {
         'countdown': 10,
         'score': 0,
@@ -10,10 +17,6 @@ function repo_init(){
     });
 
     core_storage_update();
-
-    document.getElementById('add').onclick = function(){
-        add(100);
-    };
 
     window.clearInterval(interval);
     interval = window.setInterval(
