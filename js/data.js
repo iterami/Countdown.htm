@@ -23,6 +23,3 @@ function countdown(){
 
     core_storage_update();
 }
-
-var interval = 0;
-var running = true;

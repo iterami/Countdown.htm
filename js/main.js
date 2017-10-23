@@ -2,6 +2,10 @@
 
 function repo_init(){
     core_repo_init({
+      'globals': {
+        'interval': 0,
+        'running': true,
+      },
       'info-events': {
         'add': {
           'todo': function(){
