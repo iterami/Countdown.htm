@@ -2,16 +2,16 @@
 
 function repo_init(){
     core_repo_init({
-      'globals': {
-        'interval': 0,
-        'running': true,
-      },
-      'info-events': {
+      'events': {
         'add': {
-          'todo': function(){
+          'onclick': function(){
               add(100);
           },
         },
+      },
+      'globals': {
+        'interval': 0,
+        'running': true,
       },
       'storage': {
         'countdown': 10,
