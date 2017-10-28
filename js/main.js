@@ -10,7 +10,6 @@ function repo_init(){
         },
       },
       'globals': {
-        'interval': 0,
         'running': true,
       },
       'storage': {
@@ -22,10 +21,8 @@ function repo_init(){
 
     core_storage_update();
 
-    window.clearInterval(interval);
-    interval = window.setInterval(
-      countdown,
-      1000
-    );
-    running = true;
+    core_interval_modify({
+      'interval': 1000,
+      'todo': countdown,
+    });
 }

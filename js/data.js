@@ -11,14 +11,13 @@ function add(time){
 }
 
 function countdown(){
-    core_storage_data['countdown'] -= 1;
-
-    if(core_storage_data['countdown'] < 0){
+    if(core_storage_data['countdown'] <= 0){
+        core_interval_pause_all();
         running = false;
-        window.clearInterval(interval);
         return;
     }
 
+    core_storage_data['countdown'] -= 1;
     core_storage_data['score'] += 1;
 
     core_storage_update();
