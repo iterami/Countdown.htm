@@ -22,6 +22,7 @@ function repo_init(){
     core_storage_update();
 
     core_interval_modify({
+      'id': 'countdown',
       'interval': 1000,
       'todo': countdown,
     });
