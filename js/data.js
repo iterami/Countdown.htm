@@ -7,7 +7,7 @@ function add(time){
     }
 
     core_storage_data['countdown'] += time;
-    document.getElementById('countdown').innerHTML = core_storage_data['countdown'];
+    document.getElementById('countdown').textContent = core_storage_data['countdown'];
 }
 
 function countdown(){
