@@ -5,7 +5,7 @@ function repo_init(){
       'events': {
         'add': {
           'onclick': function(){
-              if(!running
+              if(core_intervals['countdown']['paused']
                 || core_storage_data['countdown'] <= 0){
                   return;
               }
@@ -14,9 +14,6 @@ function repo_init(){
               core_storage_update();
           },
         },
-      },
-      'globals': {
-        'running': true,
       },
       'storage': {
         'added': 100,
@@ -38,7 +35,6 @@ function repo_init(){
       'todo': function(){
           if(core_storage_data['countdown'] <= 0){
               core_interval_pause_all();
-              running = false;
               return;
           }
 
