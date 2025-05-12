@@ -2,6 +2,9 @@
 
 function repo_init(){
     core_repo_init({
+      'beforeunload': {
+        'todo': core_storage_save,
+      },
       'events': {
         'add': {
           'onclick': function(){
