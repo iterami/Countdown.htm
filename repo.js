@@ -8,12 +8,12 @@ function repo_init(){
       'events': {
         'add': {
           'onclick': function(){
-              if(core_intervals['countdown']['paused']
-                || core_storage_data['countdown'] <= 0){
+              if(core_intervals.countdown.paused
+                || core_storage_data.countdown <= 0){
                   return;
               }
 
-              core_storage_data['countdown'] += core_storage_data['added'];
+              core_storage_data.countdown += core_storage_data.added;
               core_storage_update();
           },
         },
@@ -30,19 +30,19 @@ function repo_init(){
     });
 
     core_storage_update();
-    document.getElementById('add').textContent = '+' + core_storage_data['added'];
+    document.getElementById('add').textContent = '+' + core_storage_data.added;
 
     core_interval_modify({
       'id': 'countdown',
-      'interval': core_storage_data['interval'],
+      'interval': core_storage_data.interval,
       'todo': function(){
-          if(core_storage_data['countdown'] <= 0){
+          if(core_storage_data.countdown <= 0){
               core_interval_pause_all();
               return;
           }
 
-          core_storage_data['countdown'] -= 1;
-          core_storage_data['score'] += 1;
+          core_storage_data.countdown -= 1;
+          core_storage_data.score += 1;
 
           core_storage_update();
       },
