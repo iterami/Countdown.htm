@@ -24,7 +24,7 @@ function repo_init(){
         'interval': 1000,
         'score': 0,
       },
-      'storage-menu': '<table><tr><td><input class=mini id=added min=1 step=1 type=number><td>Add'
+      'storage_menu': '<table><tr><td><input class=mini id=added min=1 step=1 type=number><td>Add'
         + '<tr><td><input class=mini id=interval min=1 step=1 type=number><td>Interval</table>',
       'title': 'Countdown.htm',
     });
