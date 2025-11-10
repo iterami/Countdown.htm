@@ -7,12 +7,13 @@ function repo_init(){
       },
       'events': {
         'add': {
-          'onclick': function(){
+          'onclick': function(event){
               if(core_intervals.countdown.paused
                 || core_storage_data.countdown <= 0){
                   return;
               }
 
+              event.target.blur();
               core_storage_data.countdown += core_storage_data.added;
               core_storage_update();
           },
