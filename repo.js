@@ -25,9 +25,7 @@ function interval(){
 
 function repo_init(){
     core_repo_init({
-      'beforeunload': {
-        'todo': core_storage_save,
-      },
+      'beforeunload': core_storage_save,
       'events': {
         'add': {
           'onclick': add,
